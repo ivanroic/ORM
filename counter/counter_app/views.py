@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+# TEST COMMIT
 def count(request):
     if 'counter' in request.session:
         print('key exists!')
