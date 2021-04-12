@@ -1,0 +1,26 @@
+Create 3 new dojos
+Dojos.objects.create(name = "Dojo One", city = "Toronto", state = "ON")
+Dojos.objects.create(name = "Dojo Two", city = "Oakville", state = "ON")
+Dojos.objects.create(name = "Dojo Three", city = "Hamilton", state = "ON")
+
+Delete the 3 dojos you created
+c = Dojos.objects.all()
+c.delete()
+
+Create 3 more dojos
+Dojos.objects.create(name = "Karate", city = "Toronto", state = "ON")
+Dojos.objects.create(name = "Boxing", city = "Oakville", state = "ON")
+Dojos.objects.create(name = "Wang Chun", city = "Hamilton", state = "ON")
+
+Create 3 ninjas that belong to the first dojo
+
+
+Create 3 ninjas that belong to the second dojo
+Create 3 ninjas that belong to the third dojo
+Retrieve all the ninjas from the first dojo
+Retrieve all the ninjas from the last dojo
+Retrieve the last ninja's dojo
+
+Add a new text field called 'desc' to your Dojo class
+Create and run the migration files to update the table in your database (if needed, provide a default value of 'old dojo')
+Create a new Dojo 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Numbers Game</title>
+</head>
+<body>
+    <h1>Welcome to the great number game!</h1>
+    <h2>I am thinking of a number between 1 and 100</h2>
+
+    {% if request.session.x == 'Win' %}
+    <div class="win">
+        <h1> Winner!</h1> 
+    </div>
+    
+    {% elif request.session.x == 'Too Low' %}
+    <div class="lose">
+        <h1> Too Low!</h1> 
+    </div>
+
+    {% elif request.session.x == 'Too High' %}
+    <div class="lose">
+        <h1> Too High!</h1> 
+    </div>
+
+    {% elif request.session.x == 'Game Over, Try Again' %}
+    <div class="lose">
+        <h1>Game Over, Try Again!</h1> 
+    </div>
+
+    {% else %}
+    <div></div>
+    {% endif %}
+
+    <h3>Take A Guess!</h3>
+    <form action='/check' method='post'>
+        {% csrf_token %}
+        <input type='number' name='guess'><br>
+        <br>
+        <button type='submit'>Submit Guess</button>
+    </form>
+    <br>
+    <h3> Guesses Made: {{ request.session.count}}</h3>
+</body>
+</html>

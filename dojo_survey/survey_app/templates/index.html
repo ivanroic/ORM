@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <title>Document</title>
+</head>
+<body>
+    <h1>Index Page</h1>
+<h3>Create a User</h3>
+<form action='/results' method='post'>
+    {% csrf_token %}
+    Name: <input type='text' name='name'>
+    Email: <input type='text' name='email'>
+    <label class="container">Confirm Submission
+        <input type="checkbox">
+        <span class="checkmark"></span>
+    </label>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label><br>
+    <br>
+    <button type='submit'>Create User</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+.container {
+    display: inline-block;
+}
+
+.location {
+    border: solid 2px black;
+    text-align: center;
+    width: 140px;
+    float: left;
+    padding: 1pc;
+    margin: 20px;
+}
+
+textarea {
+    width: 40pc;
+    height: 10pc;
+}
+

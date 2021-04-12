@@ -1,0 +1,23 @@
+body {
+    text-align: center
+}
+
+.win {
+    border: 2px solid black;
+    background-color: green;
+    height: 10pc;
+    width: 10pc;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.lose {
+    border: 2px solid black;
+    background-color: red;
+    height: 10pc;
+    width: 10pc;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
