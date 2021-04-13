@@ -4,6 +4,7 @@ class Dojos(models.Model):
     name = models.CharField(max_length=50)
     city = models.CharField(max_length=25)
     state = models.CharField(max_length=25)
+    desc = models.TextField(default="Higher Learning")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

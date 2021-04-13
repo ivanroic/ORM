@@ -1,26 +1,49 @@
-Create 3 new dojos
+Create 3 new dojos 
 Dojos.objects.create(name = "Dojo One", city = "Toronto", state = "ON")
 Dojos.objects.create(name = "Dojo Two", city = "Oakville", state = "ON")
 Dojos.objects.create(name = "Dojo Three", city = "Hamilton", state = "ON")
+*** Use Create Method below for One-to-Many Relationship ***
 
 Delete the 3 dojos you created
 c = Dojos.objects.all()
 c.delete()
 
 Create 3 more dojos
-Dojos.objects.create(name = "Karate", city = "Toronto", state = "ON")
-Dojos.objects.create(name = "Boxing", city = "Oakville", state = "ON")
-Dojos.objects.create(name = "Wang Chun", city = "Hamilton", state = "ON")
+karate = Dojos.objects.create(name = "Karate", city = "Toronto", state = "ON")
+boxing = Dojos.objects.create(name = "Boxing", city = "T-Dot", state = "ON")
+wang_chun = Dojos.objects.create(name = "IP", city = "Oakville", state = "ON")
 
 Create 3 ninjas that belong to the first dojo
-
+ninja_1 = Ninjas.objects.create(first_name = "Blue", last_name = "Ninja", dojo = Dojos.objects.get(id=8)) *
+ninja_1 = Ninjas.objects.create(first_name = "Blue", last_name = "Ninja", dojo = karate)
+ninja_2 = Ninjas.objects.create(first_name = "Red", last_name = "Samurai", dojo = karate)
+ninja_3 = Ninjas.objects.create(first_name = "Orange", last_name = "MDK", dojo = karate)
 
 Create 3 ninjas that belong to the second dojo
+ninja_4 = Ninjas.objects.create(first_name = "Yellow", last_name = "Ranger", dojo = boxing)
+ninja_5 = Ninjas.objects.create(first_name = "Purple", last_name = "Padwan", dojo = boxing)
+ninja_6 = Ninjas.objects.create(first_name = "Cyan", last_name = "Trainee", dojo = boxing)
+
 Create 3 ninjas that belong to the third dojo
+ninja_7 = Ninjas.objects.create(first_name = "Black", last_name = "God", dojo = wang_chun)
+ninja_8 = Ninjas.objects.create(first_name = "White", last_name = "Master", dojo = wang_chun)
+ninja_9 = Ninjas.objects.create(first_name = "Silver", last_name = "Elite", dojo = wang_chun)
+
 Retrieve all the ninjas from the first dojo
+ninja = Ninjas.objects.filter(dojo=Dojos.objects.first())
+(OR) ninja = Ninjas.objects.filter(dojo=Dojos.objects.get(id=8))
+ninja.all()
+
 Retrieve all the ninjas from the last dojo
+ninja = Ninjas.objects.filter(dojo=Dojos.objects.last())
+(OR) ninja = Ninjas.objects.filter(dojo=Dojos.objects.get(id=11))
+ninja.all()
+
 Retrieve the last ninja's dojo
+some_ninja = Ninjas.objects.get(id=9)
+some_ninja.dojo.name
 
 Add a new text field called 'desc' to your Dojo class
 Create and run the migration files to update the table in your database (if needed, provide a default value of 'old dojo')
 Create a new Dojo 
+last_dojo = Dojos.objects.create(name = "Mecca", city = "City of Light", state = "AK", desc = "Coding Sanctuary")
