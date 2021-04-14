@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">   
+    <title>Dojos & Ninjas</title>
+</head>
+<body>
+    <h1>Add Dojo</h1>
+    <div class="form">
+        <form action="/add_dojo" method="post">
+            {% csrf_token %}
+            <p>Name: <input name="name" type="text"></p>
+            <p>City: <input name="city" type="text"></p>
+            <p>State: <input name="state" type="text"></p>
+            <button href='http://localhost:8000/add_dojo' type="submit">Add Dojo</button>
+        </form>
+    </div>
+    <h1>Add Ninja</h1>
+    <div class="form">
+        <form action="/add_ninja" method="post">
+            {% csrf_token %}
+            <p>First Name: <input name="first" type="text"></p>
+            <p>Last Name: <input name="last" type="text"></p>
+            <select name = "dojo_id">
+            <option disabled="True" selected>-- Select Dojo --</option>
+                {% for dojo in all_dojos %}
+                    <option value = {{dojo.id}}> {{dojo.name}} </option>
+                {% endfor %}
+            </select>
+            <br>
+            <br>
+            <button href='http://localhost:8000/add_ninja' type="submit">Add Ninja</button>
+        </form>
+    </div>
+    <br>
+    <h1> All Dojos </h1>
+    <ul>  
+        {% for dojo in all_dojos %}
+            <li> Ninjas @ {{dojo.name}} <br> <button name ="delete" value = {{dojo.id}} {{dojo.name}} href='http://localhost:8000/delete' type="submit">Delete Dojo</button>
+                <ul>
+                    {% for ninja in dojo.ninja.all %}
+                        <li> {{ninja.first_name}} {{ninja.last_name}} </li>
+                    {% endfor %}
+                    </ul>
+            </li>
+        {% endfor %}    
+    </ul>
+</body>
+</html>

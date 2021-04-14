@@ -14,7 +14,7 @@ boxing = Dojos.objects.create(name = "Boxing", city = "T-Dot", state = "ON")
 wang_chun = Dojos.objects.create(name = "IP", city = "Oakville", state = "ON")
 
 Create 3 ninjas that belong to the first dojo
-ninja_1 = Ninjas.objects.create(first_name = "Blue", last_name = "Ninja", dojo = Dojos.objects.get(id=8)) *
+Ninjas.objects.create(first_name = "Blue", last_name = "Ninja", dojo = Dojos.objects.get(id=8)) *
 ninja_1 = Ninjas.objects.create(first_name = "Blue", last_name = "Ninja", dojo = karate)
 ninja_2 = Ninjas.objects.create(first_name = "Red", last_name = "Samurai", dojo = karate)
 ninja_3 = Ninjas.objects.create(first_name = "Orange", last_name = "MDK", dojo = karate)
@@ -25,8 +25,8 @@ ninja_5 = Ninjas.objects.create(first_name = "Purple", last_name = "Padwan", doj
 ninja_6 = Ninjas.objects.create(first_name = "Cyan", last_name = "Trainee", dojo = boxing)
 
 Create 3 ninjas that belong to the third dojo
-ninja_7 = Ninjas.objects.create(first_name = "Black", last_name = "God", dojo = wang_chun)
-ninja_8 = Ninjas.objects.create(first_name = "White", last_name = "Master", dojo = wang_chun)
+ninja_7 = Ninjas.objects.create(first_name = "Platinum", last_name = "God", dojo = wang_chun)
+ninja_8 = Ninjas.objects.create(first_name = "Gold", last_name = "Master", dojo = wang_chun)
 ninja_9 = Ninjas.objects.create(first_name = "Silver", last_name = "Elite", dojo = wang_chun)
 
 Retrieve all the ninjas from the first dojo
