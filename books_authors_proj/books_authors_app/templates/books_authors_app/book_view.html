@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book View</title>
+</head>
+<body>
+        <h1> {{chosen_book.title}} </h1>
+        <h2> ID: {{chosen_book.id}} </h2>
+    <br>
+    <h2> Description: {{chosen_book.description}} </h2>
+
+    <h2> Authors: 
+        <ul>
+            {% for author in chosen_book.authors.all %}
+                <li> {{author.name}} </li>
+            {% endfor %}
+        </ul>
+    </h2>
+    <div class="form">
+        <form action="/b" method="post">
+            {% csrf_token %}
+            <input name="bookid" type="hidden" value={{chosen_book.id}}>
+            <select name = "author_id">
+                <option disabled="True" selected>-- Select an Author --</option>
+                {% for author in all_authors %}       
+                        {% if author not in chosen_book.authors.all %}
+                            <option value = {{author.id}}> {{author.name}} </option>
+                        {% endif %}
+                {% endfor %}
+            </select>
+        <button type="submit" onclick="window.location.href='http://localhost:8000/b/{{author.id}}';"> Add to Book </button>
+        </form>
+    </div>
+</body>
+</html>

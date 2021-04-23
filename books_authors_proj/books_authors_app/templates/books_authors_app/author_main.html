@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Books / Authors</title>
+</head>
+<body>
+    <h1> Add Author </h1>
+    <div class="form">
+        <form action="/add_author" method="post">
+            {% csrf_token %}
+            <p>First Name: <input name="first_name" type="text"></p>
+            <p>Last Name: <input name="last_name" type="text"></p>
+            <p>Notes: <input name="notes" type="text"></p>
+            <button type='submit' href="http://localhost:8000/author_main">Add</button>
+        </form>
+    </div>
+    <br>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for author in all_authors %}
+                    <th scope="row">{{author.id}}</th>
+                    <td>{{author.name}}</td>
+                    <td> <type="button" onclick="window.location.href='http://localhost:8000/{{author.id}}a';"> View </td>
+            </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

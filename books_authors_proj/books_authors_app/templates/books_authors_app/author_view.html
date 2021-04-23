@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author View</title>
+</head>
+<body>
+        <h1> {{chosen_author.name}} </h1>
+        <h2> ID: {{chosen_author.id}} </h2>
+    <br>
+    <h2> Notes: {{chosen_author.notes}} </h2>
+
+    <h2> Books: 
+        <ul>
+            {% for books in chosen_author.books.all %}
+                <li> {{books.title}} </li>
+            {% endfor %}
+        </ul>
+    </h2>
+    <div class="form">
+        <form action="/book_to_author" method="post">
+            {% csrf_token %}
+            <select name = "author_id">
+                <option disabled="True" selected>-- Select a Book --</option>
+                    {% for books in chosen_author.books.all %}
+                        {% if books not in chosen_author.books.all %}
+                            <option> {{book.name}} </option>
+                        {% endif %}
+                    {% endfor %}
+            </select>
+            <td> <type="button" onclick="window.location.href='http://localhost:8000/{{book.id}}aa';"> Add to Author </td>
+    </div>
+</body>
+</html>

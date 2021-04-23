@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title> All Shows </title>
+</head>
+<body>
+    <h2> All Shows </h2>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Network</th>
+                <th>Release Date</th>
+                <th>Actions</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for show in all_shows %}
+                    <th scope="row">{{show.id}}</th>
+                    <td>{{show.title}}</td>
+                    <td>{{show.network}}</td>
+                    <td>{{show.release_date}}</td>
+                    
+                    <td> <type="button" onclick="window.location.href='http://localhost:8000/show/{{show.id}}';"> View </td>
+                    <td> <type="button" onclick="window.location.href='http://localhost:8000/show/{{show.id}}/edit';"> Edit </td>
+                    <td> <type="button" onclick="window.location.href='http://localhost:8000/delete/{{show.id}}';"> Delete </td>
+            </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" onclick="window.location.href='http://localhost:8000/add_page';"> Add New Show </button>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Show</title>
+</head>
+<body>
+    <h1> Add New Show </h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form action='/create' method='post'>
+        {% csrf_token %}
+        Title: <input type='text' name='title'>
+        Network: <input type='text' name='network'>
+        Release Date: <input type="date" name="release_date" value="2021-01-01" min="1950-01-01" max="2023-12-31">
+        Description: <input type='text' name='description'>
+        <button type='submit'>Add</button>
+    </form>
+    <br>
+    <a href="http://localhost:8000/shows">Back</a>
+</body>
+</html>

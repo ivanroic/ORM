@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie</title>
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form action='/show/update' method='post'>
+        {% csrf_token %}
+        <input type='hidden' name='showid' value='{{chosen_show.id}}'>
+        Title: <input type='text' name='title' value='{{chosen_show.title}}' placeholder='{{chosen_show.title}}'>
+        Network: <input type='text' name='network' value='{{chosen_show.network}}' placeholder='{{chosen_show.network}}'>
+        Release Date: <input type="date" name="release_date" value='1999-01-01' min="1950-01-01" max="2023-12-31">
+        Description: <input type='text' name='description' value='{{chosen_show.description}}' placeholder='{{chosen_show.description}}'>
+        <br>
+        <br>
+        <button type='submit'>Update</button>
+        <br>
+        <br>
+        <a href="http://localhost:8000/shows">Back</a>
+    </form>
+</body>
+</html>
