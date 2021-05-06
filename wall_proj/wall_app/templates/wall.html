@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wall</title>
+</head>
+<body>
+    <a href="http://localhost:8000/login_reg/logout">Log Out</a>
+    <h2> Post A Message </h2>
+    <form action='/wall/post_message' method='post'>
+        {% csrf_token %}
+        <textarea name="post_message"></textarea>
+        <br>
+        <button type='submit'>Post</button>
+    </form>
+    <br>
+
+    {% for message in all_messages %}
+        <p> Message By: {{message.user.first_name}} {{message.user.last_name}} @ {{message.created_at}} </p>
+        <p> {{message.message}}</p>
+
+    {% for comment in all_comments %}
+        {% if comment.message.id == message.id %}
+            <p> Comment By: {{comment.user.first_name}} @ {{comment.created_at}}</p>
+            <p>{{comment.comment}}</p>
+        {% endif %}
+    {% endfor %}
+    <br>
+
+    <h2> Post A Comment </h2>
+    <form action='/wall/post_comment' method='post'>
+        {% csrf_token %}
+        <textarea name="post_comment"></textarea>
+        <input type='hidden' name='message_comment_id' value={{message.id}}>
+        <br>
+        <button type='submit'>Post</button>
+    </form>
+        {% if message.user.id == active_user.id %}
+        <form action='/wall/delete/{{message.id}}' method='post'>
+            {% csrf_token %}
+            <button type='submit'>Delete</button>
+        </form>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
