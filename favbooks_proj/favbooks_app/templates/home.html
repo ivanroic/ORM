@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Favourite Books</title>
+</head>
+<body>
+    <form action='/login_reg/logout' method='post'>
+        {% csrf_token %}
+        <h2>Welcome, {{active_user.first_name}}</h2>
+        <button type='submit'>Log Out</button>
+    </form>
+    <br>
+    <a href='http://localhost:8000/fb/my_favs'>View My Fav Books!</a>
+    <br>
+    <form action='/fb/add_book' method='POST'>
+    {% csrf_token %}
+        <h2>Add A Favourite Book</h2>
+        Title: <input type='text' name='title'>
+        Description: <input type='text' name='description'>
+        <button type='submit'>Add</button>
+    </form>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+            {% endfor %}
+    {% endif %}
+        </ul>
+    <br>
+    <h2>All Books</h2>
+        <ul> 
+            {% for book in all_books %}
+                <li> <a href='http://localhost:8000/fb/{{book.id}}'>{{book.title}} </a> </li>
+                <p> Uploaded By: {{book.uploaded_by.first_name}} @ {{book.created_at}} </p>
+
+                {% if book in active_user.liked_books.all %}
+                    <p> This one of your Favourites! </p> 
+                {% else %}
+                    <p><a href='http://localhost:8000/fb/fav/{{book.id}}'>(Add to Favourites)</a></p> 
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <a href="http://localhost:8000/fb/clear">Clear All</a>
+</body>
+</html>

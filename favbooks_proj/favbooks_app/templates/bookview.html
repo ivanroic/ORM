@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+    <h2>Welcome, {{active_user.first_name}}</h2>
+    {% if chosen_book.uploaded_by == active_user %}
+        <form action='/fb/update/{{chosen_book.id}}' method='post'>
+            {% csrf_token %}
+            Title: <input type='text' name='title' value={{chosen_book.title}}>
+            <p>Uploaded By: {{chosen_book.uploaded_by.first_name}}</p>
+            <p>Added On: {{chosen_book.created_at}}</p>
+            <p>Last Updated: {{chosen_book.updated_at}}</p>
+            Description: <input type='text' name='description' value={{chosen_book.description}}>
+            <br>
+            <br>
+            <button type='submit'>Update</button>
+            <br>
+            <br>
+            <a href='http://localhost:8000/fb/delete/{{chosen_book.id}}'>Delete Book</a>
+        </form>
+    {% else %}
+        <p>Title: {{chosen_book.title}}</p>
+        <p>Uploaded By: {{chosen_book.uploaded_by.first_name}}</p>
+        <p>Added On: {{chosen_book.created_at}}</p>
+        <p>Last Updated: </p>
+        <p>Description: {{chosen_book.description}}</p>
+    {% endif %}
+    <br>
+    <br>
+    <p>Users Who Also Like This Book:</p>
+    {% for user in all_users %}
+        {% if user in chosen_book.users_who_like.all %}
+            <li>
+                {{user.first_name}}
+            </li>
+        {% endif %}
+    {% endfor %}
+    <br>
+    {% if active_user in chosen_book.users_who_like.all %}
+        <a href='http://localhost:8000/fb/fav/{{chosen_book.id}}'>Remove from Favourites</a>
+        {% else %}
+        <a href='http://localhost:8000/fb/fav/{{chosen_book.id}}'>Add to Favourites</a>
+    {% endif %}
+    <br>
+    <br>
+    <a href='http://localhost:8000/fb/home'>Return to Homepage</a>
+</body>
+</html>

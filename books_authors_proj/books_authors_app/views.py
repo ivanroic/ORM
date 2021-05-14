@@ -13,9 +13,9 @@ def add_book(request):
 
 def book_view(request, id):
         context = {
-        'all_books': Book.objects.all(),
-        'all_authors': Author.objects.all(),
-        'chosen_book': Book.objects.get(id=id)
+            'all_books': Book.objects.all(),
+            'all_authors': Author.objects.all(),
+            'chosen_book': Book.objects.get(id=id)
         }
         print(id)
         return render(request, "books_authors_app/book_view.html", context)
